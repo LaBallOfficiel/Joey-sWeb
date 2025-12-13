@@ -299,10 +299,21 @@
     });
 
     function changeTheme(theme, btn) {
+      // Réinitialiser les styles personnalisés
+      const root = document.documentElement;
+      root.style.removeProperty('--bg-1');
+      root.style.removeProperty('--bg-2');
+      root.style.removeProperty('--card');
+      root.style.removeProperty('--accent');
+      root.style.removeProperty('--accent-dark');
+      root.style.removeProperty('--muted');
+      root.style.removeProperty('--text');
+      
       document.body.setAttribute('data-theme', theme);
       document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       localStorage.setItem('theme', theme);
+      localStorage.removeItem('customColor'); // Supprimer la couleur personnalisée si on choisit un thème prédéfini
     }
     
     function openColorPickerModal() {
